@@ -74,6 +74,10 @@ volatile double lastY = 30;
 long randNumber;
 int last_min = 0;
 
+// interval at which to write the time independently of button activation (default 10 minutes)
+const long interval = 600000;    
+unsigned long previousMillis = 0;       
+
 //For printing to the serial console...
 void print2digits(int number) {
   if (number >= 0 && number < 10) {
@@ -115,12 +119,24 @@ void loop()
   }
 
 #endif
+
+  unsigned long currentMillis = millis();
+  
   int i = 0;
-  Serial.println("Ready. Waiting for button.");
+  
+  Serial.println("Ready.");
+
   while (digitalRead(7) != LOW) {
-    delay(10);
+    currentMillis = millis();
+    if ((currentMillis - previousMillis) >= interval) {
+      Serial.println("Time interval elapsed.");
+      break;
+    }
   }
-  Serial.println("Button pressed.");
+  
+  previousMillis = currentMillis;
+  
+  Serial.println("Activating.");
   if (!servo2.attached()) servo2.attach(SERVOPINLEFT);
   if (!servo3.attached()) servo3.attach(SERVOPINRIGHT);
   if (RTC.read(tm))
