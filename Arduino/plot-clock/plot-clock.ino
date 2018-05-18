@@ -28,7 +28,7 @@
 #define L4 45
 
 //comment the next line out for military 24 hour time setting.
-#define NONMILITARY
+//#define NONMILITARY
 
 
 // origin points of left and right servo
@@ -145,29 +145,50 @@ void loop()
     i++;
   }
 
-  Serial.println("Drawing first digit...");
+  
   if (i != 0) {
-  number(5, 25, i, 1.15);
-  delay(100);
+    Serial.println("Drawing first digit...");
+    number(3, 23, i, 1.15);
+    delay(100);
+    Serial.println("Drawing second digit...");
+    number(18, 23, (hour() - i * 10), 1.15);
+    delay(100);
+    Serial.println("Drawing colon...");
+    number(33, 22, 11, 0.9);
+    delay(100);
+  
+    i = 0;
+    while ((i + 1) * 10 <= minute())
+    {
+      i++;
+    }
+    Serial.println("Drawing third digit...");
+    number(42, 21, i, 1.1);
+    delay(100);
+    Serial.println("Drawing fourth digit...");
+    number(62, 19, (minute() - i * 10), 1.0);
+    delay(100);
+  }else {
+    Serial.println("Drawing first digit...");
+    number(5, 23, (hour() - i * 10), 1.15);
+    delay(100);
+    Serial.println("Drawing colon...");
+    number(20, 24, 11, 0.9);
+    delay(100);
+  
+    i = 0;
+    while ((i + 1) * 10 <= minute())
+    {
+      i++;
+    }
+    Serial.println("Drawing second digit...");
+    number(35, 21, i, 1.1);
+    delay(100);
+    Serial.println("Drawing third digit...");
+    number(55, 19, (minute() - i * 10), 1.0);
+    delay(100);
   }
-  Serial.println("Drawing second digit...");
-  number(20, 23, (hour() - i * 10), 1.15);
-  delay(100);
-  Serial.println("Drawing colon...");
-  number(35, 22, 11, 0.9);
-  delay(100);
-
-  i = 0;
-  while ((i + 1) * 10 <= minute())
-  {
-    i++;
-  }
-  Serial.println("Drawing third digit...");
-  number(45, 21, i, 1.1);
-  delay(100);
-  Serial.println("Drawing fourth digit...");
-  number(65, 19, (minute() - i * 10), 1.0);
-  delay(100);
+  
   Serial.println("Drawing complete. Resetting arm position.");
   
   randNumber = random(100);
