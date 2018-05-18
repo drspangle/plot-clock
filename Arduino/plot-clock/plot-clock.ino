@@ -1,11 +1,33 @@
+/*
+ * plot-clock (c) by drspangle
+ * plot-clock is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+ * You should have received a copy of the license along with this work. If not, see <http://creativecommons.org/licenses/by-sa/3.0/>.
+ * 
+ * plot-clock has been modified from it's original version.
+ * 
+ * Attributions:
+ * Plotclock by joo
+ * Published on February 12, 2014
+ * www.thingiverse.com/thing:248009
+ * 
+ * Glow-In-Dark Plot Clock by TuckerPi
+ * Published on March 21, 2018
+ * www.thingiverse.com/thing:2833916
+ * 
+ */
+// 
+
+// units: mm; microseconds; radians
+// origin: bottom left of drawing surface
+
 #include <TimeLib.h>
 #include <DS1307RTC.h>
-#include <Time.h> // see http://playground.arduino.cc/Code/time 
+#include <Time.h>
 #include <Servo.h>
 #include <Wire.h>
 
-// delete or mark the next line as comment if you don't need these
-//#define CALIBRATION      // enable calibration mode
+
+//#define CALIBRATION      // Uncoenable calibration mode
 #define REALTIMECLOCK    // enable real time clock
 
 // When in calibration mode, adjust the following factors until the servos move exactly 90 degrees
