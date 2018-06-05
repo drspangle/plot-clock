@@ -121,7 +121,7 @@ void loop()
 #endif
 
   unsigned long currentMillis = millis();
-  
+  int xoffset = 3;
   int i = 0;
   
   Serial.println("Ready.");
@@ -186,13 +186,13 @@ void loop()
   
   if (i != 0) {
     Serial.println("Drawing first digit...");
-    number(3, 23, i, 1.15);
+    number(3 + xoffset, 23, i, 1.15);
     delay(100);
     Serial.println("Drawing second digit...");
-    number(18, 23, (hour() - i * 10), 1.15);
+    number(18 + xoffset, 23, (hour() - i * 10), 1.15);
     delay(100);
     Serial.println("Drawing colon...");
-    number(33, 22, 11, 0.9);
+    number(33 + xoffset, 22, 11, 0.9);
     delay(100);
   
     i = 0;
@@ -201,17 +201,17 @@ void loop()
       i++;
     }
     Serial.println("Drawing third digit...");
-    number(42, 21, i, 1.1);
+    number(42 + xoffset, 21, i, 1.1);
     delay(100);
     Serial.println("Drawing fourth digit...");
-    number(62, 19, (minute() - i * 10), 1.0);
+    number(62 + xoffset, 19, (minute() - i * 10), 1.0);
     delay(100);
   }else {
     Serial.println("Drawing first digit...");
-    number(5, 23, (hour() - i * 10), 1.15);
+    number(5 + xoffset, 23, (hour() - i * 10), 1.15);
     delay(100);
     Serial.println("Drawing colon...");
-    number(20, 24, 11, 0.9);
+    number(20 + xoffset, 24, 11, 0.9);
     delay(100);
   
     i = 0;
@@ -220,10 +220,10 @@ void loop()
       i++;
     }
     Serial.println("Drawing second digit...");
-    number(35, 21, i, 1.1);
+    number(35 + xoffset, 21, i, 1.1);
     delay(100);
     Serial.println("Drawing third digit...");
-    number(55, 19, (minute() - i * 10), 1.0);
+    number(55 + xoffset, 19, (minute() - i * 10), 1.0);
     delay(100);
   }
   
